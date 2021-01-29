@@ -1,0 +1,17 @@
+.nav-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-section > p {
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: opacity 0.15s ease-in;
+  color: #eeeeee;
+  padding: 0.5rem;
+}
+
+.nav-section > p:hover {
+  cursor: pointer;
+  color: #212121;
+}

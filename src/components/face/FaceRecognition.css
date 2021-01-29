@@ -1,0 +1,38 @@
+.face-section {
+  margin: 2rem auto;
+  width: 500px;
+  position: relative;
+}
+
+#input-img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1rem;
+}
+
+.bounding-box {
+  position: absolute;
+  box-shadow: 0 0 0 4px #149df2 inset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* media queries */
+
+/* iphone x */
+@media only screen and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .face-section {
+    margin: 1rem auto;
+    width: 320px;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .face-section {
+    margin: 1rem auto;
+    width: 320px;
+  }
+}
