@@ -20,7 +20,7 @@ function Register({handleRoute, loadUser}) {
 
     const handleSubmitReg = () =>{
         //fetch by default does a get request
-        fetch('http://localhost:3000/register', {
+        fetch('https://facerec-back-2021.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

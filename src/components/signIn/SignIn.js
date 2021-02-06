@@ -18,7 +18,7 @@ function SignIn({handleRoute, loadUser}) {
     const handleSubmitSignin = (event) =>{
         event.preventDefault();
         //fetch by default does a get request
-        fetch('http://localhost:3000/signin', {
+        fetch('https://facerec-back-2021.herokuapp.com/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
