@@ -6,8 +6,8 @@ import Rank from './components/rank/Rank';
 import Particles from 'react-particles-js';
 import {particlesProps} from './ParticlesProp';
 import FaceRecognition from './components/face/FaceRecognition';
-import Clarifai from 'clarifai';
-import {apiKey} from './APIKey';
+import SignIn from './components/signIn/SignIn';
+import Register from './components/register/Register';
 
 function App() {
 
@@ -19,8 +19,15 @@ function App() {
     right:'', 
     left:''
   });
-
   const [allBox, setAllBox] = useState([]);
+  const [route, setRoute] = useState('signin');
+  const [user,setUser] = useState({
+    id: '', 
+    name: '', 
+    email: '', 
+    entries:0,
+    joined: ''
+  });
 
     useEffect(()=>{
       setAllBox(prev => [...prev, box]);
@@ -45,27 +52,76 @@ function App() {
      setInput(event.target.value);
     }
 
-    const app = new Clarifai.App({
-        apiKey: apiKey
-    });
-
+    
     const handleClick = () =>{
       setAllBox([]);
-        setUrl(input);
-        app.models.predict('d02b4508df58432fbb84e800597b8959',input)
-        .then( response => faceLocation(response))
+        fetch('http://localhost:3000/imageUrl', {
+              method: 'post', 
+              headers: {'Content-Type': 'application/json'}, 
+              body: JSON.stringify({
+                input: input,
+              })
+            })
+            .then(response => response.json())
+        .then( response => {
+          if (response){
+            fetch('http://localhost:3000/image', {
+              method: 'put', 
+              headers: {'Content-Type': 'application/json'}, 
+              body: JSON.stringify({
+                id: user.id,
+              })
+            })
+            .then(res => res.json())
+            .then(count => {
+              setUser( {...user, entries: count})
+            })
+          }
+          
+        faceLocation(response)
+        })
         .catch(err => console.log(err))
+        setUrl(input);
+    }
+
+    const handleRoute = (route) =>{
+      setRoute(route);
+    }
+
+    const cleanUrl = ()=>{
+      setUrl('');
+    }
+
+    const loadUser = (data) =>{
+      setUser({...user, 
+        id: data.id, 
+        name: data.name, 
+        email: data.email, 
+        entries: data.entries,
+        joined: data.joined}); 
     }
 
 
   return (
     <div className="App">
       <Particles className='particles' params={particlesProps} />
-      <Navigation />
+      
+      {route === 'home'?
+      <div>
+      <Navigation handleRoute={handleRoute} cleanUrl={cleanUrl}/>
       <Logo />
-      <Rank />
+      <Rank user={user}/>
       <ImageInputForm handleClick={handleClick} handleChange={handleChange}/>
       <FaceRecognition url={url} allBox={allBox}/>
+      </div>
+      : (
+      route === 'signin'?
+        <SignIn handleRoute={handleRoute} loadUser={loadUser}/> 
+        :
+        <Register handleRoute={handleRoute} loadUser={loadUser}/>
+      )
+      }
+      
     </div>
   );
 }

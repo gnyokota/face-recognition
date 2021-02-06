@@ -17,7 +17,7 @@
   width: 65vw;
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
   padding: 1.25rem;
-  background-color: #0d7377;
+  background-color: rgba(13, 115, 119, 0.6);
 }
 
 .input-field {
