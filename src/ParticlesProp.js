@@ -1,4 +1,23 @@
 export const particlesProps = {
+  "background": {
+    "color": {
+      "value": "transparent"
+    },
+    "position": "50% 50%",
+    "repeat": "no-repeat",
+    "size": "cover"
+  },
+  "backgroundMask": {
+    "cover": {
+      "color": {
+        "value": "#0d7377"
+      }
+    }
+  },
+  "backgroundMode": {
+    "enable": true,
+    "zIndex": 1
+  },
   "interactivity": {
     "events": {
       "onClick": {
@@ -15,13 +34,22 @@ export const particlesProps = {
     },
     "modes": {
       "bubble": {
-        "distance": 300,
+        "distance": 400,
         "duration": 2,
         "opacity": 0.8,
-        "size": 2
+        "size": 40
       },
       "grab": {
-        "distance": 300
+        "distance": 400
+      },
+      "light": {
+        "area": {
+          "gradient": {
+            "start": {
+              "value": "#0d7377"
+            }
+          }
+        }
       },
       "slow": {
         "radius": 100
@@ -30,11 +58,11 @@ export const particlesProps = {
   },
   "particles": {
     "color": {
-      "value": "#ffffff"
+      "value": "#0d7377"
     },
     "links": {
       "color": {
-        "value": "#ffffff"
+        "value": "#0d7377"
       },
       "distance": 150,
       "enable": true,
@@ -54,13 +82,13 @@ export const particlesProps = {
         "right": "out",
         "top": "out"
       },
-      "speed": 2
+      "speed": 20
     },
     "number": {
       "density": {
         "enable": true
       },
-      "value": 180
+      "value": 80
     },
     "opacity": {
       "value": 0.5,
@@ -96,7 +124,7 @@ export const particlesProps = {
       "value": 5,
       "animation": {
         "minimumValue": 0.1,
-        "speed": 30
+        "speed": 40
       }
     },
     "stroke": {

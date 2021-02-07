@@ -7,11 +7,7 @@
 
 body {
   font-family: "Karla", sans-serif;
-  background: linear-gradient(
-    90deg,
-    rgba(13, 115, 119, 1) 30%,
-    rgba(50, 224, 196, 1) 95%
-  );
+  background-color: #f6f6f6;
 }
 
 .particles {
